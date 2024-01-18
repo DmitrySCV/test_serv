@@ -31,6 +31,7 @@ services:
     restart: always
     ports:
       - "8080:80"
-
+    volumes:
+      - /httpd:/usr/local/apache2/htdocs
     depends_on:
       - wordpress
