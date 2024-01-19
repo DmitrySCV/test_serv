@@ -1,5 +1,9 @@
 version: '2.21.0'
 
+networks:
+  my_network:
+    driver: bridge
+
 services:
 
   wordpress:
@@ -14,6 +18,8 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - /wordpress:/var/www/html
+    networks:
+      - my_network
 
   mariadb:
     image: mariadb
@@ -25,6 +31,8 @@ services:
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     volumes:
       - /mariadb:/var/lib/mysql
+    networks:
+      - my_network
 
   httpd:
     image: httpd
@@ -35,3 +43,9 @@ services:
       - /httpd:/usr/local/apache2/htdocs
     depends_on:
       - wordpress
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
