@@ -35,8 +35,3 @@ services:
       - /httpd:/usr/local/apache2/htdocs
     depends_on:
       - wordpress
-        networks:
-      - httpd_net
-  #//networks:
-  #//httpd_net:
-  #  driver: bridge
