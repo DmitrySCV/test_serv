@@ -1,11 +1,15 @@
 global:
-  scrape_interval: 15s
-  external_labels:
-    monitor: 'httpd-server'
+  scrape_interval:     15s
+  evaluation_interval: 15s
+#  external_labels:
+#    monitor: 'httpd-server'
 
 scrape_configs:
-  - job_name: 'my_job'
+  - job_name: 'httpd'
     static_configs:
-      - targets: ['localhost:']
-    metrics_path: /server-status/?auto
+      - targets: 
+        - httpd:80
+    metrics_path: /server-status
     scheme: http
+
+    
